@@ -42,7 +42,7 @@ From: ubuntu:20.04
     cd /
     git clone https://github.com/CJ5518/libmelee
     cd libmelee
-    python -m pip install .
+    python3 -m pip install .
     cd /
     git clone https://github.com/CJ5518/meleeCpus
     cp /meleeCpus/meleeScript.py /
