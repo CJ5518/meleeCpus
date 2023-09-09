@@ -15,12 +15,13 @@ parser.add_argument("--numGames", "-n", help="The number of games to play", type
 parser.add_argument("--p1cpu", help="CPU level of player 1", type=int, default=9)
 parser.add_argument("--p2cpu", help="CPU level of player 2", type=int, default=9)
 parser.add_argument("--iso", "-i", help="Path to the melee ISO", type=str, default="/melee.iso")
+parser.add_argument("--outputDir", "-o", help="Path to the slippi file output dir", type=str, default=None, required=True)
 
 args = parser.parse_args()
 
 
 
-console = melee.console.Console(fullscreen=False, path="/slippi-Ishiiruka/build/Binaries/", gfx_backend="Null")
+console = melee.console.Console(fullscreen=False, path="/slippi-Ishiiruka/build/Binaries/", gfx_backend="Null", replay_directory=args.outputDir)
 
 console.run(exe_name="dolphin-emu-nogui", iso_path=args.iso)
 
@@ -82,5 +83,7 @@ try:
 except:
 	os.system("pkill dolphin")
 	os.system("pkill dolphin")
+	os.system("pkill Xvfb")
+	os.system("pkill Xvfb")
 
 
