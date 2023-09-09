@@ -26,8 +26,11 @@ From: ubuntu:20.04
 	./build-linux.sh
     cd /
     echo "Trying to do dolphin first time setup"
-    timeout 5 pkill dolphin
-    /slippi-Ishiiruka/build/Binaries/dolphin-emu
+    Xvfb :1 &
+    export DISPLAY=:1
+    /slippi-Ishiiruka/build/Binaries/dolphin-emu &
+    sleep 1
+    pkill dolphin
     echo "Successfully performed dolphin first time setup"
     wget https://www.python.org/ftp/python/3.11.5/Python-3.11.5.tgz
     tar xzf Python-3.11.5.tgz
