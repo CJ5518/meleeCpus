@@ -3,8 +3,6 @@ import argparse
 
 
 #Definitely a better way to do this, but this was easiest
-os.system("Xvfb :1 &")
-os.environ["DISPLAY"] = ":1"
 
 parser = argparse.ArgumentParser(description="Python utility to run arbitrary cpu battles in melee")
 parser.add_argument("--test", help="Run the program in test mode, will print success or failure", action="store_true")
@@ -23,7 +21,7 @@ args = parser.parse_args()
 
 console = melee.console.Console(fullscreen=False, path="/slippi-Ishiiruka/build/Binaries/", gfx_backend="Null", replay_directory=args.outputDir)
 
-console.run(exe_name="dolphin-emu-nogui", iso_path=args.iso)
+console.run(exe_name="dolphin-emu-nogui", iso_path=args.iso, command=["xvfb-run","-a"])
 
 controller = melee.Controller(console=console, port=1)
 controller2 = melee.Controller(console=console,port=2)
@@ -47,6 +45,7 @@ controller2.connect()
 charSelectCount = 0
 inStageFlag = False
 runCount = 0
+print("About to start stepping console")
 while True:
 	gamestate = console.step()
 	if gamestate is None:
@@ -55,6 +54,7 @@ while True:
 
 	if gamestate.menu_state in [melee.Menu.IN_GAME, melee.Menu.SUDDEN_DEATH]:
 		if inStageFlag:
+			print("Made it into a match")
 			runCount += 1
 			inStageFlag = False
 	elif gamestate.menu_state in [melee.Menu.CHARACTER_SELECT]:
