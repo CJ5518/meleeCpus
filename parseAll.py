@@ -17,13 +17,12 @@ def parseGame(path):
         print("Couldn't parse replay " + path)
 
 
-
 def handleDir(path):
-    for root,dirs,files in os.walk():
+    for root,dirs,files in os.walk(path):
         for file in files:
-            print(root + file)
+            parseGame(root + "/" + file)
 
-for root, dirs, files in os.walk():
+for root, dirs, files in os.walk("./SlippiFiles/"):
     for dire in dirs:
         handleDir(root + dire)
     break
