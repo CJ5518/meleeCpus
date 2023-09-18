@@ -40,7 +40,7 @@ From: ubuntu:20.04
     make
     make install
     cd /
-    git clone https://github.com/CJ5518/libmelee
+    git clone https://github.com/CJ5518/libmeleeMeleeCpus
     cd libmelee
     python3 -m pip install .
     cd /
