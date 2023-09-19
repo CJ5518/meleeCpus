@@ -12,7 +12,10 @@ from slippi import Game
 def parseGame(path):
     try:
         game = Game(path, skip_frames=True)
-        print("Parsed game " + path)
+        numChars = len(game.metadata.players[0].characters)
+        if numChars != 1:
+            print(numChars)
+            print("Parsed game " + path)
     except:
         print("Couldn't parse replay " + path)
 
