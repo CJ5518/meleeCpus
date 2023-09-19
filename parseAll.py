@@ -20,9 +20,9 @@ matchups = {}
 def getWinner(game):
     port0 = game.frames[-1].ports[0].leader.post.flags & StateFlags.DEAD
     if port0 == StateFlags.DEAD:
-        return 0
-    else:
         return 1
+    else:
+        return 0
 
 #Do something with a .slp file
 def parseGame(path):
@@ -30,7 +30,6 @@ def parseGame(path):
         game = Game(path)
         p0 = int(game.start.players[0].character)
         p1 = int(game.start.players[1].character)
-        winnerPort = getWinner(game)
 
         #Make sure the structure of the dict is ready
         if p0 not in matchups:
