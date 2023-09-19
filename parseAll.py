@@ -1,4 +1,5 @@
 import os
+import signal
 from slippi import Game
 
 #Script assumes the following file structure:
@@ -18,6 +19,13 @@ def parseGame(path):
             print("Parsed game " + path)
     except:
         print("Couldn't parse replay " + path)
+
+
+def signal_handler(sig, frame):
+    print("Exiting")
+    os.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 
 def handleDir(path):
