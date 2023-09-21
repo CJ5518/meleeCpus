@@ -2,7 +2,6 @@ import melee, os,sys
 import argparse
 
 
-#Definitely a better way to do this, but this was easiest
 
 parser = argparse.ArgumentParser(description="Python utility to run arbitrary cpu battles in melee")
 parser.add_argument("--test", help="Run the program in test mode, will print success or failure", action="store_true")

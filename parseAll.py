@@ -1,7 +1,11 @@
 import os
 import signal
+import argparse
 from slippi import Game
 from slippi.event import StateFlags
+
+#TODO:
+#Dump json file out, add argument for that
 
 #Script assumes the following file structure:
 #./
@@ -9,6 +13,12 @@ from slippi.event import StateFlags
 #./SlippiFiles/Job_1111/Game_##.slp
 #./SlippiFiles/Job_2222/Game_##.slp
 #./SlippiFiles/Job_3333/Game_##.slp
+
+
+parser = argparse.ArgumentParser(description="Python utility to parse specific replays and output the info")
+parser.add_argument("--inputDir", "-i", help="Path to the slippi file input dir", type=str, default=None, required=True)
+
+args = parser.parse_args()
 
 
 #matchups[p0][p1] = Number of times char0 (p0) beat char1 (p1)
