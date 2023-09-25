@@ -17,4 +17,12 @@ And that's about it, you'll need to put a melee iso somewhere but the above comm
 
 Use `runner.lua` to submit a bunch of jobs (I included a small delay between submissions just in case too many concurrent jobs broke my code) and in a few hours (only takes so long because of the delay) you'll have your own melee CPU battle dataset.
 
+# Parser usage
+To speed up parsing, that is also accelerated by the super computer. On the machine I was using, I had to do some weird container stuff such that the command I use to parse a folder of replays is as follows:
 
+`apptainer exec --writable -f ../pythonContainer/ python3 /root/meleeCpus/parseFolder.py -i /root/meleeCpus/Slippi
+Files/Job_5143`
+
+Where ../pythonContainer/ is a container with a newer version of python installed than what was on the machine.
+
+The parseRunner.py file can be used to run all the parser jobs.
