@@ -1,5 +1,5 @@
 --Runs one job of parsing
-
+local lfs = require("lfs")
 
 local function runScript(folderName)
 	local command = string.format("printf '#!/bin/bash\\n\\n"  ..
@@ -11,4 +11,8 @@ local function runScript(folderName)
 
 end
 
-runScript(arg[1])
+for file in lfs.dir("./SlippiFiles/") do
+    runScript(file)
+end
+
+

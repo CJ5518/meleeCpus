@@ -8,3 +8,5 @@ libmelee/
 melee/
 *.slp
 parseOuts/
+lfs.so
+
