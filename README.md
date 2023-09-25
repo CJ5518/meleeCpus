@@ -25,4 +25,4 @@ Files/Job_5143`
 
 Where ../pythonContainer/ is a container with a newer version of python installed than what was on the machine.
 
-The parseRunner.py file can be used to run all the parser jobs.
+The parseAll.py file can be used to run all the parser jobs.
