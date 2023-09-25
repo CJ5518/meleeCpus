@@ -35,6 +35,13 @@ local function forAllFiles(root)
         end
     end
     print(json.encode(master))
+    local count = 0;
+    for i, v in pairs(master) do
+        for i2, v2 in pairs(v) do
+            count = count + v2;
+        end
+    end
+    print("Number of games: " .. tostring(count))
 end
 
 forAllFiles("./parseOuts/")
