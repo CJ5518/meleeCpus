@@ -1,18 +1,13 @@
 import os
 import signal
 import argparse
+import json
 from slippi import Game
 from slippi.event import StateFlags
 
-#TODO:
-#Dump json file out, add argument for that
 
-#Script assumes the following file structure:
-#./
-#./SlippiFiles/
-#./SlippiFiles/Job_1111/Game_##.slp
-#./SlippiFiles/Job_2222/Game_##.slp
-#./SlippiFiles/Job_3333/Game_##.slp
+#Usage:
+#python3 parseFolder.py -i "./folder/" > output.json
 
 
 parser = argparse.ArgumentParser(description="Python utility to parse specific replays and output the info")
@@ -56,8 +51,8 @@ def parseGame(path):
         else:
             matchups[p1][p0] += 1
     except Exception as e:
-        print("Couldn't parse replay " + path)
-        print(e)
+        #Just ignore exceptions, there are a couple bad replays
+        pass
 
 
 def signal_handler(sig, frame):
@@ -72,9 +67,6 @@ def handleDir(path):
         for file in files:
             parseGame(root + "/" + file)
 
-for root, dirs, files in os.walk("./SlippiFiles/"):
-    for dire in dirs:
-        handleDir(root + dire)
-    break
+handleDir(args.inputDir)
 
-print(matchups)
+print(json.dumps(matchups))
