@@ -1,9 +1,14 @@
 local json = require("json")
 local lfs = require("lfs")
 
-local function decodeFile(path)
-    local file = io.open("./parseOuts/" .. path,"r")
+
+local function decodeGenericFile(path)
+    local file = io.open(path,"r")
     return json.decode(file:read("a"))
+end
+
+local function decodeFile(path)
+    return decodeGenericFile("./parseOuts/" .. path)
 end
 
 local master = {};
@@ -43,7 +48,7 @@ local function forAllFiles(root)
     print("Number of games: " .. tostring(count))
 
     local file = io.open("out.csv", "w")
-    local charNameArray = decodeFile("characterIds.json")
+    local charNameArray = decodeGenericFile("characterIds.json")
 
     for q = 0,25 do
         if master[tostring(q)] then
