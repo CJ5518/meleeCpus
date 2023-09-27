@@ -43,9 +43,20 @@ local function forAllFiles(root)
     print("Number of games: " .. tostring(count))
 
     local file = io.open("out.csv", "w")
+    local charNameArray = decodeFile("characterIds.json")
+
+    for q = 0,25 do
+        if master[tostring(q)] then
+            file:write(charNameArray[tostring(q)])
+            file:write(",")
+        end
+    end
+    file:write("\n")
     for q = 0,25 do
         local matchups = master[tostring(q)]
         if matchups then
+            file:write(charNameArray[tostring(q)])
+            file:write(",")
             for i = 0,25 do
                 if matchups[tostring(i)] then
                     local wins = matchups[tostring(i)]
