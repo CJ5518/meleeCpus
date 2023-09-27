@@ -50,6 +50,7 @@ local function forAllFiles(root)
     local file = io.open("out.csv", "w")
     local charNameArray = decodeGenericFile("characterIds.json")
 
+    file:write("Winrate,")
     for q = 0,25 do
         if master[tostring(q)] then
             file:write(charNameArray[tostring(q)])
