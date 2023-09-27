@@ -34,7 +34,6 @@ local function forAllFiles(root)
             consolidate(obj)
         end
     end
-    print(json.encode(master))
     local count = 0;
     for i, v in pairs(master) do
         for i2, v2 in pairs(v) do
@@ -42,6 +41,27 @@ local function forAllFiles(root)
         end
     end
     print("Number of games: " .. tostring(count))
+
+    local file = io.open("out.csv", "w")
+    for q = 0,25 do
+        local matchups = master[tostring(q)]
+        if matchups then
+            for i = 0,25 do
+                if matchups[tostring(i)] then
+                    local wins = matchups[tostring(i)]
+                    local losses = matchups[tostring(i)][tostring(q)]
+                    local games = wins + losses;
+                    local winrate = wins / games;
+                    if q == i then
+                        winrate = .5
+                    end
+                    file:write(winrate)
+                    file:write(",");
+                end
+            end
+            file:write("\n");
+        end
+    end
 end
 
 forAllFiles("./parseOuts/")
