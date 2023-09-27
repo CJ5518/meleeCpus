@@ -53,7 +53,7 @@ local function forAllFiles(root)
     file:write("Winrate,")
     for q = 0,25 do
         if master[tostring(q)] then
-            file:write(charNameArray[tostring(q)])
+            file:write("=IMAGE(\"" .. charNameArray[tostring(q)][2] .. "\")")
             file:write(",")
         end
     end
@@ -61,7 +61,7 @@ local function forAllFiles(root)
     for q = 0,25 do
         local matchups = master[tostring(q)]
         if matchups then
-            file:write(charNameArray[tostring(q)])
+            file:write("=IMAGE(\"" .. charNameArray[tostring(q)][2] .. "\")")
             file:write(",")
             for i = 0,25 do
                 if matchups[tostring(i)] then
