@@ -49,7 +49,7 @@ local function forAllFiles(root)
             for i = 0,25 do
                 if matchups[tostring(i)] then
                     local wins = matchups[tostring(i)]
-                    local losses = matchups[tostring(i)][tostring(q)]
+                    local losses = master[tostring(i)][tostring(q)]
                     local games = wins + losses;
                     local winrate = wins / games;
                     if q == i then
